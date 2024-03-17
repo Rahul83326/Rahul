@@ -23,10 +23,8 @@ export function Hero() {
           <h3>Full Stack Developer</h3>
         </ScrollAnimation>
         <ScrollAnimation animateIn="fadeInUp" delay={0.6 * 1000}>
-          <p className="small-resume">3 Years of Experience</p>
+          <p className="small-resume">2 Years of Experience</p>
         </ScrollAnimation>
-
-
         <ScrollAnimation animateIn="fadeInUp" delay={0.8 * 1000}>
           <BrowserRouter>
             <NavHashLink smooth to="#contact" className="button">Contact</NavHashLink>

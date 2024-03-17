@@ -3,13 +3,11 @@ import { useForm, ValidationError } from '@formspree/react';
 import { toast, ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import validator from 'validator';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 export function Form() {
-  const [state, handleSubmit] = useForm('your-form-id'); // Replace 'your-form-id' with your Form ID
+  const [state, handleSubmit] = useForm('myyrwnjg'); // Replace 'your-form-id' with your Form ID
   const [validEmail, setValidEmail] = useState(false);
   const [message, setMessage] = useState('');
-  const [recaptchaVerified, setRecaptchaVerified] = useState(false);
 
   function verifyEmail(email: string) {
     setValidEmail(validator.isEmail(email));
@@ -27,17 +25,40 @@ export function Form() {
     }
   }, [state.succeeded]);
 
-  const handleRecaptchaChange = (value: string | null) => {
-    setRecaptchaVerified(value !== null);
-  };
-
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!recaptchaVerified) {
-      toast.error('Please verify that you are not a robot!');
-      return;
+
+    // Proceed with form submission
+    try {
+      await handleSubmit(event);
+
+      // Send form data to specified email address
+      const formData = new FormData();
+      formData.append('email', event.currentTarget.email.value);
+      formData.append('message', event.currentTarget.message.value);
+
+      await fetch('https://api.emailserviceprovider.com/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: 'rahulthangamani2002@gmail.com',
+          subject: 'New Message from Contact Form',
+          body: `
+            Email: ${event.currentTarget.email.value}
+            Message: ${event.currentTarget.message.value}
+          `,
+        }),
+      });
+
+      // Clear form fields after successful submission if needed
+      // resetFormFields();
+    } catch (error) {
+      // Handle form submission error
+      console.error('Form submission error:', error);
+      // toast.error('Failed to submit the form. Please try again later.');
     }
-    handleSubmit(event);
   };
 
   return (
@@ -82,10 +103,6 @@ export function Form() {
               prefix="Message"
               field="message"
               errors={state.errors}
-            />
-            <ReCAPTCHA
-              sitekey="your-site-key" // Replace 'your-site-key' with your actual reCAPTCHA site key
-              onChange={handleRecaptchaChange}
             />
             <button
               type="submit"

@@ -8,7 +8,7 @@ import { Project } from "../Project/Project";
 
 
 import wordpress from "../../assets/wordpress.svg";
-import shopify from "../../assets/shopify.svg";
+// import shopify from "../../assets/shopify.svg";
 import htmlIcon from "../../assets/html-icon.svg";
 import cssIcon from "../../assets/css-icon.svg";
 import sassIcon from "../../assets/sass-icon.svg";
@@ -167,11 +167,11 @@ export function Main() {
                   "width": 20,
                   "height": 20
                 },
-                {
-                  "src": shopify,
-                  "width": 20,
-                  "height": 20
-                },
+                // {
+                //   "src": shopify,
+                //   "width": 20,
+                //   "height": 20
+                // },
                 {
                   "src": htmlIcon,
                   "width": 20,
