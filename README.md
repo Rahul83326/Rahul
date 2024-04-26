@@ -1,6 +1,6 @@
-# Portfolio of Vinayak Singh
+# Portfolio of Rahul Thangamani
 
-<img src ="https://github.com/CodeVinayak/CodeVinayak/blob/5920a79f4c5977332a67caf91125241cf0fc46b5/www.vinayaksingh.in.png" />
+<img src ="https://github.com/CodeRahul/CodeRahul/blob/5920a79f4c5977332a67caf91125241cf0fc46b5/www.Rahulthangamani.in.png" />
  
 This project was created with CRA (Create React App)
 
